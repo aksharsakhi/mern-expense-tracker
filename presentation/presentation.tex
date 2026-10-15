@@ -1,0 +1,251 @@
+\documentclass[aspectratio=169, 10pt]{beamer}
+
+% Encoding and Typography
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{hyperref}
+
+% Clean, Professional Theme Setup
+\usetheme{Madrid}
+\useinnertheme{rounded}
+\usecolortheme{whale}
+
+% Custom Color Definitions
+\definecolor{PrimaryIndigo}{HTML}{4F46E5}
+\definecolor{DarkSlate}{HTML}{0F172A}
+\definecolor{AccentEmerald}{HTML}{059669}
+\definecolor{AccentRose}{HTML}{E11D48}
+\definecolor{AccentAmber}{HTML}{D97706}
+\definecolor{SubtleGray}{HTML}{F1F5F9}
+
+% Apply Colors to Beamer Elements
+\setbeamercolor{palette primary}{bg=PrimaryIndigo,fg=white}
+\setbeamercolor{palette secondary}{bg=DarkSlate,fg=white}
+\setbeamercolor{palette tertiary}{bg=PrimaryIndigo!80!black,fg=white}
+\setbeamercolor{titlelike}{parent=palette primary,fg=white}
+\setbeamercolor{structure}{fg=PrimaryIndigo}
+\setbeamercolor{block title}{bg=PrimaryIndigo,fg=white}
+\setbeamercolor{block body}{bg=SubtleGray,fg=DarkSlate}
+\setbeamercolor{block title example}{bg=AccentEmerald,fg=white}
+\setbeamercolor{block body example}{bg=SubtleGray,fg=DarkSlate}
+\setbeamercolor{block title alert}{bg=AccentRose,fg=white}
+\setbeamercolor{block body alert}{bg=SubtleGray,fg=DarkSlate}
+
+% Clean Header / Footer
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+% Presentation Metadata
+\title[SpendWise — MERN Expense Tracker]{\textbf{SpendWise: Modern MERN Expense Tracker}}
+\subtitle{Full Stack Frameworks — Mini Project Evaluation}
+\author[\textbf{Akshar Sakhi}]{\textbf{Akshar Sakhi}}
+\institute[Amrita Vishwa Vidyapeetham]{Department of Computer Science and Engineering\\Amrita Vishwa Vidyapeetham}
+\date[16 October 2026]{Evaluation Date: 16 October 2026}
+
+\begin{document}
+
+% -------------------------------------------------------------
+% SLIDE 1: TITLE SLIDE
+% -------------------------------------------------------------
+\begin{frame}
+  \titlepage
+  \begin{center}
+    \footnotesize\textbf{Repository:} \href{https://github.com/aksharsakhi/mern-expense-tracker}{\textcolor{PrimaryIndigo}{github.com/aksharsakhi/mern-expense-tracker}}
+  \end{center}
+\end{frame}
+
+% -------------------------------------------------------------
+% SLIDE 2: MOTIVATION & PROBLEM STATEMENT
+% -------------------------------------------------------------
+\begin{frame}{Problem Statement \& Motivation}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{alertblock}{The Challenge}
+        \begin{itemize}
+          \item Personal financial records are fragmented across static notes, paper bills, and disjointed bank statements.
+          \item Lack of real-time insights into monthly category distributions (e.g., dining, housing, transportation).
+          \item Absence of instant metrics for true monthly net balance and dynamic savings velocity.
+        \end{itemize}
+      \end{alertblock}
+    \end{column}
+    
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{The Solution: SpendWise}
+        \begin{itemize}
+          \item Centralized full-stack web application built on the modern \textbf{MERN} stack.
+          \item Fast transaction logging with payment methods, category tagging, and date tracking.
+          \item High-speed aggregation pipelines calculating cashflow statistics with visual Chart.js dashboards.
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% -------------------------------------------------------------
+% SLIDE 3: SYSTEM ARCHITECTURE & TECH STACK
+% -------------------------------------------------------------
+\begin{frame}{System Architecture \& Technology Stack}
+  \begin{block}{Three-Tier Architectural Overview}
+    \begin{itemize}
+      \item \textbf{Presentation Tier (Client):} React 18, Vite, Chart.js, Lucide Icons, Glassmorphism CSS design system.
+      \item \textbf{Application Tier (API):} Node.js \& Express.js RESTful API, CORS, centralized validation, and error middleware.
+      \item \textbf{Data Tier (Database):} MongoDB 8.x with Mongoose ODM, indexed collection queries, and multi-stage aggregation.
+    \end{itemize}
+  \end{block}
+
+  \begin{columns}[T]
+    \begin{column}{0.31\textwidth}
+      \begin{exampleblock}{\centering Frontend (Vite)}
+        \footnotesize
+        \begin{itemize}
+          \item Component modularity
+          \item Responsive dashboard
+          \item Dark/Light mode theme
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+    \begin{column}{0.31\textwidth}
+      \begin{block}{\centering Backend (Express)}
+        \footnotesize
+        \begin{itemize}
+          \item Clean route separation
+          \item Schema validation
+          \item Dynamic month query
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.31\textwidth}
+      \begin{exampleblock}{\centering Database (MongoDB)}
+        \footnotesize
+        \begin{itemize}
+          \item Strict Mongoose model
+          \item Multi-facet aggregations
+          \item Compound indexing
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% -------------------------------------------------------------
+% SLIDE 4: REST API SPECIFICATION
+% -------------------------------------------------------------
+\begin{frame}{RESTful API Design \& Data Contracts}
+  \begin{table}
+    \centering
+    \small
+    \begin{tabular}{lll}
+      \toprule
+      \textbf{Method} & \textbf{Endpoint} & \textbf{Functionality} \\
+      \midrule
+      \texttt{GET}    & \texttt{/api/transactions} & Paginated \& filtered records (\texttt{?month=2026-10}) \\
+      \texttt{GET}    & \texttt{/api/transactions/summary} & Aggregation totals, categories, daily trends \\
+      \texttt{POST}   & \texttt{/api/transactions} & Create new transaction with input validation \\
+      \texttt{GET}    & \texttt{/api/transactions/:id} & Retrieve transaction details by ObjectId \\
+      \texttt{PUT}    & \texttt{/api/transactions/:id} & Update existing transaction attributes \\
+      \texttt{DELETE} & \texttt{/api/transactions/:id} & Remove transaction record \\
+      \texttt{POST}   & \texttt{/api/transactions/seed} & One-click demonstration dataset seeding \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+
+  \begin{block}{JSON Payload Schema}
+    \footnotesize
+    \texttt{\{ "amount": 18500, "type": "expense", "category": "Housing", "date": "2026-10-02", "paymentMethod": "Net Banking", "note": "Apartment Rent" \}}
+  \end{block}
+\end{frame}
+
+% -------------------------------------------------------------
+% SLIDE 5: MONGODB AGGREGATION PIPELINES
+% -------------------------------------------------------------
+\begin{frame}{MongoDB Aggregation Pipelines}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Multi-Faceted Pipeline Execution}
+        A single round-trip database query utilizing \texttt{\$facet}:
+        \begin{enumerate}
+          \item \textbf{Total Balances:} \texttt{\$group} by \texttt{\$type} to sum total income and total expense.
+          \item \textbf{Category Distribution:} Filter expenses and compute sub-totals and percentages per category.
+          \item \textbf{Daily Cashflow Velocity:} Group by ISO date string to feed daily spending charts.
+        \end{enumerate}
+      \end{block}
+    \end{column}
+
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{Computed Metrics Returned}
+        \begin{itemize}
+          \item \textbf{Net Balance:} $\text{Total Income} - \text{Total Expense}$
+          \item \textbf{Savings Rate:} $\frac{\text{Income} - \text{Expense}}{\text{Income}} \times 100\%$
+          \item \textbf{Category Share:} $\frac{\text{Category Total}}{\text{Total Expense}} \times 100\%$
+          \item \textbf{Payment Method Split:} Breakdown across UPI, Cards, and Net Banking.
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% -------------------------------------------------------------
+% SLIDE 6: DEPLOYMENT & DEVOPS ARCHITECTURE
+% -------------------------------------------------------------
+\begin{frame}{Production Deployment \& DevOps Architecture}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Containerization (\texttt{Docker})}
+        \begin{itemize}
+          \item \textbf{Backend:} Multi-stage Node.js Alpine container with non-root security.
+          \item \textbf{Frontend:} Multi-stage build producing static bundle served through an optimized \textbf{Nginx} Alpine reverse proxy.
+          \item \textbf{Compose:} \texttt{docker-compose.yml} orchestrating MongoDB, Express API, and Nginx Client.
+        \end{itemize}
+      \end{block}
+    \end{column}
+
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{Cloud Infrastructure as Code}
+        \begin{itemize}
+          \item \textbf{Render Blueprint (\texttt{render.yaml}):} Automated cloud deployment for Express web service and React static site.
+          \item \textbf{Vercel (\texttt{vercel.json}):} Client-side SPA routing and transparent API proxying.
+          \item \textbf{Hybrid Production Serving:} Express dynamically serves \texttt{client/dist} in production single-instance environments.
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% -------------------------------------------------------------
+% SLIDE 7: CONCLUSION & EVALUATION DEMO
+% -------------------------------------------------------------
+\begin{frame}{Evaluation Demo Highlights \& Key Learnings}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Live Demonstration Highlights}
+        \begin{itemize}
+          \item Full CRUD workflow with responsive modal forms and toast feedback.
+          \item Interactive category donut and daily cashflow bar charts.
+          \item Dynamic month selector with instantaneous metric updates.
+          \item One-click CSV transaction export.
+        \end{itemize}
+      \end{block}
+    \end{column}
+
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{Key Takeaways}
+        \begin{itemize}
+          \item End-to-end full-stack development using modern MERN principles.
+          \item Scalable database schema design and aggregation optimization.
+          \item Industrial DevOps practices: Docker containerization and cloud deployment configs.
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+
+  \vspace{0.3cm}
+  \begin{center}
+    \Large\textbf{Thank You! Questions \& Demonstration}
+  \end{center}
+\end{frame}
+
+\end{document}
