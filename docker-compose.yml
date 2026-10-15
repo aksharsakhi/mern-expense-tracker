@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:8.0
+    container_name: spendwise-mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: expense_tracker_mern
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - spendwise-network
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: spendwise-server
+    restart: always
+    ports:
+      - "5050:5050"
+    environment:
+      - NODE_ENV=production
+      - PORT=5050
+      - MONGO_URI=mongodb://mongodb:27017/expense_tracker_mern
+    depends_on:
+      - mongodb
+    networks:
+      - spendwise-network
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: spendwise-client
+    restart: always
+    ports:
+      - "8080:80"
+    depends_on:
+      - server
+    networks:
+      - spendwise-network
+
+networks:
+  spendwise-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local

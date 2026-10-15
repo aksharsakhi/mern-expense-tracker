@@ -1,0 +1,32 @@
+services:
+  # Backend Express Web Service
+  - type: web
+    name: spendwise-api
+    env: node
+    plan: free
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGO_URI
+        sync: false # Connect to MongoDB Atlas connection string in Render dashboard
+
+  # Frontend Static Site
+  - type: web
+    name: spendwise-client
+    env: static
+    plan: free
+    rootDir: client
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: https://spendwise-api.onrender.com/api/*
+      - type: rewrite
+        source: /*
+        destination: /index.html
