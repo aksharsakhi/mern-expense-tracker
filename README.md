@@ -3,12 +3,12 @@
 A full-stack financial tracking and analytics platform built with the **MERN Stack (MongoDB, Express, React, Node.js)**. Designed and implemented for the **Full Stack Frameworks Mini Project Evaluation**.
 
 [![Repository](https://img.shields.io/badge/GitHub-mern--expense--tracker-blue?logo=github)](https://github.com/aksharsakhi/mern-expense-tracker)
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Online%20(HTTPS)-success?logo=cloudflare)](https://admit-posts-district-agrees.trycloudflare.com)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Render%20Cloud-success?logo=render)](https://mern-expense-tracker-jskq.onrender.com)
 [![MERN Stack](https://img.shields.io/badge/Stack-MongoDB%20|%20Express%20|%20React%20|%20Node.js-green)](https://reactjs.org/)
 [![License](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
 
-> 🌐 **Live Online Application URL:** [https://admit-posts-district-agrees.trycloudflare.com](https://admit-posts-district-agrees.trycloudflare.com)  
-> The full MERN application (React frontend, Express REST API, and MongoDB database) is live online and accessible globally over HTTPS.
+> 🌐 **Live Online Application URL:** [https://mern-expense-tracker-jskq.onrender.com](https://mern-expense-tracker-jskq.onrender.com)  
+> The full MERN application (React frontend, Express REST API, and MongoDB Atlas database) is live online and accessible globally over HTTPS on Render Cloud.
 
 ---
 

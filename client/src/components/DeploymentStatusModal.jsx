@@ -139,12 +139,12 @@ export default function DeploymentStatusModal({ isOpen, onClose }) {
                   <span style={{ color: 'var(--text-muted)' }}>Public URL:</span>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', marginTop: '0.15rem' }}>
                     <a 
-                      href="https://admit-posts-district-agrees.trycloudflare.com" 
+                      href="https://mern-expense-tracker-jskq.onrender.com" 
                       target="_blank" 
                       rel="noreferrer"
                       style={{ color: 'var(--accent-cyan)', textDecoration: 'none', fontWeight: 600, wordBreak: 'break-all' }}
                     >
-                      admit-posts-district-agrees.trycloudflare.com
+                      mern-expense-tracker-jskq.onrender.com
                     </a>
                     <ExternalLink size={13} style={{ color: 'var(--accent-cyan)', flexShrink: 0 }} />
                   </div>
