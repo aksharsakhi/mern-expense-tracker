@@ -7,7 +7,8 @@ import {
   Sun, 
   Moon, 
   TrendingUp,
-  Download
+  Download,
+  Activity
 } from 'lucide-react';
 
 export default function Navbar({
@@ -18,7 +19,8 @@ export default function Navbar({
   isSeeding,
   theme,
   onToggleTheme,
-  onExportCSV
+  onExportCSV,
+  onOpenDeploymentModal
 }) {
   return (
     <header className="navbar">
@@ -54,6 +56,17 @@ export default function Navbar({
         >
           <Download size={16} />
           <span>Export</span>
+        </button>
+
+        {/* Deployment & DevOps Admin */}
+        <button 
+          className="btn btn-secondary" 
+          onClick={onOpenDeploymentModal} 
+          title="View Live Deployment, Health & Infrastructure Status"
+          style={{ borderColor: 'var(--income-border)', color: 'var(--income-500)', background: 'var(--income-bg)' }}
+        >
+          <Activity size={16} />
+          <span>DevOps & Deploy</span>
         </button>
 
         {/* Demo Seed Data */}

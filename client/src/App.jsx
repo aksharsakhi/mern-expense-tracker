@@ -6,6 +6,7 @@ import FilterBar from './components/FilterBar';
 import TransactionTable from './components/TransactionTable';
 import TransactionFormModal from './components/TransactionFormModal';
 import DeleteConfirmModal from './components/DeleteConfirmModal';
+import DeploymentStatusModal from './components/DeploymentStatusModal';
 import { 
   fetchTransactions, 
   fetchSummary, 
@@ -50,6 +51,8 @@ export default function App() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [deletingTransaction, setDeletingTransaction] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
+
+  const [isDeploymentModalOpen, setIsDeploymentModalOpen] = useState(false);
 
   // Toast notification state
   const [toast, setToast] = useState(null);
@@ -199,6 +202,7 @@ export default function App() {
         theme={theme}
         onToggleTheme={toggleTheme}
         onExportCSV={handleExportCSV}
+        onOpenDeploymentModal={() => setIsDeploymentModalOpen(true)}
       />
 
       <main className="app-container">
@@ -267,6 +271,12 @@ export default function App() {
         onConfirm={handleDeleteConfirm}
         transaction={deletingTransaction}
         isDeleting={isDeleting}
+      />
+
+      {/* Deployment & Infrastructure Admin Status Modal */}
+      <DeploymentStatusModal
+        isOpen={isDeploymentModalOpen}
+        onClose={() => setIsDeploymentModalOpen(false)}
       />
 
       {/* Toast Notification */}
