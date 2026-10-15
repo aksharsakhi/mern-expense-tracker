@@ -6,7 +6,6 @@
 \usepackage{lmodern}
 \usepackage{microtype}
 \usepackage{booktabs}
-\usepackage{tikz}
 \usepackage{hyperref}
 
 % Clean, Professional Theme Setup
@@ -39,215 +38,138 @@
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{footline}[frame number]
 
-% Presentation Metadata
-\title[SpendWise — MERN Expense Tracker]{\textbf{SpendWise: Modern MERN Expense Tracker}}
-\subtitle{Full Stack Frameworks — Mini Project Evaluation}
+% Metadata
+\title[\textbf{SpendWise -- MERN Expense Tracker}]{\textbf{SpendWise: Modern MERN Expense Tracker}}
+\subtitle{Full Stack Frameworks -- Mini Project Evaluation}
 \author[\textbf{Akshar Sakhi}]{\textbf{Akshar Sakhi}}
 \institute[Amrita Vishwa Vidyapeetham]{Department of Computer Science and Engineering\\Amrita Vishwa Vidyapeetham}
 \date[16 October 2026]{Evaluation Date: 16 October 2026}
 
 \begin{document}
 
-% -------------------------------------------------------------
-% SLIDE 1: TITLE SLIDE
-% -------------------------------------------------------------
+% =============================================================
+% SLIDE 1 OF 3: TITLE, OBJECTIVES & LIVE ACCESS
+% =============================================================
 \begin{frame}
   \titlepage
-  \begin{center}
-    \footnotesize\textbf{Repository:} \href{https://github.com/aksharsakhi/mern-expense-tracker}{\textcolor{PrimaryIndigo}{github.com/aksharsakhi/mern-expense-tracker}}\\[0.2em]
-    \footnotesize\textbf{Live Deployment:} \href{https://admit-posts-district-agrees.trycloudflare.com}{\textcolor{AccentEmerald}{\textbf{admit-posts-district-agrees.trycloudflare.com}}}
-  \end{center}
-\end{frame}
-
-% -------------------------------------------------------------
-% SLIDE 2: MOTIVATION & PROBLEM STATEMENT
-% -------------------------------------------------------------
-\begin{frame}{Problem Statement \& Motivation}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
-      \begin{alertblock}{The Challenge}
+      \begin{block}{\centering Project Scope \& Objectives}
+        \footnotesize
         \begin{itemize}
-          \item Personal financial records are fragmented across static notes, paper bills, and disjointed bank statements.
-          \item Lack of real-time insights into monthly category distributions (e.g., dining, housing, transportation).
-          \item Absence of instant metrics for true monthly net balance and dynamic savings velocity.
+          \item Full CRUD daily income and expense tracking with analytics.
+          \item MongoDB aggregation engine computing real-time monthly totals.
+          \item Built with modern \textbf{MERN} stack (MongoDB, Express, React, Node).
         \end{itemize}
+      \end{block}
+    \end{column}
+
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{\centering Live Evaluation Links}
+        \footnotesize
+        \begin{itemize}
+          \item \textbf{Live App (HTTPS):} \href{https://admit-posts-district-agrees.trycloudflare.com}{\textcolor{AccentEmerald}{\textbf{admit-posts-district-agrees.trycloudflare.com}}}
+          \item \textbf{GitHub Repository:} \href{https://github.com/aksharsakhi/mern-expense-tracker}{\textcolor{PrimaryIndigo}{\textbf{github.com/aksharsakhi/mern-expense-tracker}}}
+          \item \textbf{CUBRICS Commits:} 16 scheduled commits (Oct 11 -- Oct 15)
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% =============================================================
+% SLIDE 2 OF 3: ARCHITECTURE, REST APIS & AGGREGATIONS
+% =============================================================
+\begin{frame}{Architecture, REST APIs \& MongoDB Aggregations}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Three-Tier System Architecture}
+        \scriptsize
+        \begin{itemize}
+          \item \textbf{Frontend (React 18 + Vite):} Glassmorphism UI, Chart.js visuals.
+          \item \textbf{Backend (Node.js + Express):} RESTful API, CORS, input validators.
+          \item \textbf{Database (MongoDB 8.x):} Compound indexes on \texttt{(date, type)}.
+        \end{itemize}
+      \end{block}
+
+      \begin{exampleblock}{RESTful Endpoints Contract}
+        \scriptsize
+        \begin{itemize}
+          \item \texttt{GET  /api/transactions?month=2026-10} (Filtered list)
+          \item \texttt{GET  /api/transactions/summary} (MongoDB aggregation)
+          \item \texttt{POST /api/transactions} (Create record with validation)
+          \item \texttt{PUT /api/transactions/:id} \& \texttt{DELETE} (Update/Remove)
+          \item \texttt{POST /api/transactions/seed} (One-click demo dataset)
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Multi-Faceted MongoDB Aggregation}
+        \scriptsize
+        Single round-trip database query utilizing \texttt{\$facet}:
+        \begin{itemize}
+          \item \textbf{Totals Facet:} Computes total income, expenses, count.
+          \item \textbf{Category Distribution:} Group expenditures to calculate percentage share per category for donut chart.
+          \item \textbf{Daily Cashflow Velocity:} Group daily spending to feed dynamic bar chart.
+        \end{itemize}
+      \end{block}
+
+      \begin{exampleblock}{Computed Real-Time Metrics}
+        \scriptsize
+        \begin{itemize}
+          \item $\text{\textbf{Net Balance}} = \text{Total Income} - \text{Total Expense}$
+          \item $\text{\textbf{Savings Rate}} = \frac{\text{Income} - \text{Expense}}{\text{Income}} \times 100\%$
+          \item \textbf{Payment Splits:} Breakdown across UPI, Cards, Net Banking.
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% =============================================================
+% SLIDE 3 OF 3: LIVE DEMO, DEPLOYMENT & KEY TAKEAWAYS
+% =============================================================
+\begin{frame}{Evaluation Demo, Deployment \& Key Takeaways}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Live Demonstration Workflow}
+        \scriptsize
+        \begin{itemize}
+          \item \textbf{Dynamic Month Switching:} Instant metric recalculation between October and September 2026.
+          \item \textbf{Full CRUD Operations:} Add new transactions via modal, instant validation, update notes, delete with confirmation.
+          \item \textbf{Multi-Criteria Filters:} Live text search + type tabs (\texttt{All}, \texttt{Income}, \texttt{Expense}) + category dropdowns.
+          \item \textbf{Data Portability:} Direct one-click CSV export of monthly records.
+        \end{itemize}
+      \end{block}
+
+      \begin{exampleblock}{Evaluation Learning Outcomes}
+        \scriptsize
+        \begin{itemize}
+          \item Production-grade full-stack MERN engineering.
+          \item Scalable MongoDB aggregation optimization.
+          \item Accessible, aesthetic UI with fluid Chart.js data visualization.
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+
+    \begin{column}{0.48\textwidth}
+      \begin{block}{DevOps \& Production Deployment}
+        \scriptsize
+        \begin{itemize}
+          \item \textbf{Live Edge Tunnel:} Global HTTPS access via Cloudflare Edge Tunnel.
+          \item \textbf{Unified Server:} Express serves compiled React bundle (\texttt{client/dist}) in production.
+          \item \textbf{Docker Ecosystem:} Multi-stage container builds + \texttt{docker-compose.yml} with Nginx reverse proxy.
+          \item \textbf{Cloud Blueprints:} Preconfigured \texttt{render.yaml} and \texttt{vercel.json} for cloud platform deployments.
+        \end{itemize}
+      \end{block}
+
+      \begin{alertblock}{\centering Live Demonstration Link}
+        \centering\scriptsize
+        \href{https://admit-posts-district-agrees.trycloudflare.com}{\textcolor{AccentEmerald}{\textbf{https://admit-posts-district-agrees.trycloudflare.com}}}
       \end{alertblock}
     \end{column}
-    
-    \begin{column}{0.48\textwidth}
-      \begin{exampleblock}{The Solution: SpendWise}
-        \begin{itemize}
-          \item Centralized full-stack web application built on the modern \textbf{MERN} stack.
-          \item Fast transaction logging with payment methods, category tagging, and date tracking.
-          \item High-speed aggregation pipelines calculating cashflow statistics with visual Chart.js dashboards.
-        \end{itemize}
-      \end{exampleblock}
-    \end{column}
   \end{columns}
-\end{frame}
-
-% -------------------------------------------------------------
-% SLIDE 3: SYSTEM ARCHITECTURE & TECH STACK
-% -------------------------------------------------------------
-\begin{frame}{System Architecture \& Technology Stack}
-  \begin{block}{Three-Tier Architectural Overview}
-    \begin{itemize}
-      \item \textbf{Presentation Tier (Client):} React 18, Vite, Chart.js, Lucide Icons, Glassmorphism CSS design system.
-      \item \textbf{Application Tier (API):} Node.js \& Express.js RESTful API, CORS, centralized validation, and error middleware.
-      \item \textbf{Data Tier (Database):} MongoDB 8.x with Mongoose ODM, indexed collection queries, and multi-stage aggregation.
-    \end{itemize}
-  \end{block}
-
-  \begin{columns}[T]
-    \begin{column}{0.31\textwidth}
-      \begin{exampleblock}{\centering Frontend (Vite)}
-        \footnotesize
-        \begin{itemize}
-          \item Component modularity
-          \item Responsive dashboard
-          \item Dark/Light mode theme
-        \end{itemize}
-      \end{exampleblock}
-    \end{column}
-    \begin{column}{0.31\textwidth}
-      \begin{block}{\centering Backend (Express)}
-        \footnotesize
-        \begin{itemize}
-          \item Clean route separation
-          \item Schema validation
-          \item Dynamic month query
-        \end{itemize}
-      \end{block}
-    \end{column}
-    \begin{column}{0.31\textwidth}
-      \begin{exampleblock}{\centering Database (MongoDB)}
-        \footnotesize
-        \begin{itemize}
-          \item Strict Mongoose model
-          \item Multi-facet aggregations
-          \item Compound indexing
-        \end{itemize}
-      \end{exampleblock}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% -------------------------------------------------------------
-% SLIDE 4: REST API SPECIFICATION
-% -------------------------------------------------------------
-\begin{frame}{RESTful API Design \& Data Contracts}
-  \begin{table}
-    \centering
-    \small
-    \begin{tabular}{lll}
-      \toprule
-      \textbf{Method} & \textbf{Endpoint} & \textbf{Functionality} \\
-      \midrule
-      \texttt{GET}    & \texttt{/api/transactions} & Paginated \& filtered records (\texttt{?month=2026-10}) \\
-      \texttt{GET}    & \texttt{/api/transactions/summary} & Aggregation totals, categories, daily trends \\
-      \texttt{POST}   & \texttt{/api/transactions} & Create new transaction with input validation \\
-      \texttt{GET}    & \texttt{/api/transactions/:id} & Retrieve transaction details by ObjectId \\
-      \texttt{PUT}    & \texttt{/api/transactions/:id} & Update existing transaction attributes \\
-      \texttt{DELETE} & \texttt{/api/transactions/:id} & Remove transaction record \\
-      \texttt{POST}   & \texttt{/api/transactions/seed} & One-click demonstration dataset seeding \\
-      \bottomrule
-    \end{tabular}
-  \end{table}
-
-  \begin{block}{JSON Payload Schema}
-    \footnotesize
-    \texttt{\{ "amount": 18500, "type": "expense", "category": "Housing", "date": "2026-10-02", "paymentMethod": "Net Banking", "note": "Apartment Rent" \}}
-  \end{block}
-\end{frame}
-
-% -------------------------------------------------------------
-% SLIDE 5: MONGODB AGGREGATION PIPELINES
-% -------------------------------------------------------------
-\begin{frame}{MongoDB Aggregation Pipelines}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Multi-Faceted Pipeline Execution}
-        A single round-trip database query utilizing \texttt{\$facet}:
-        \begin{enumerate}
-          \item \textbf{Total Balances:} \texttt{\$group} by \texttt{\$type} to sum total income and total expense.
-          \item \textbf{Category Distribution:} Filter expenses and compute sub-totals and percentages per category.
-          \item \textbf{Daily Cashflow Velocity:} Group by ISO date string to feed daily spending charts.
-        \end{enumerate}
-      \end{block}
-    \end{column}
-
-    \begin{column}{0.48\textwidth}
-      \begin{exampleblock}{Computed Metrics Returned}
-        \begin{itemize}
-          \item \textbf{Net Balance:} $\text{Total Income} - \text{Total Expense}$
-          \item \textbf{Savings Rate:} $\frac{\text{Income} - \text{Expense}}{\text{Income}} \times 100\%$
-          \item \textbf{Category Share:} $\frac{\text{Category Total}}{\text{Total Expense}} \times 100\%$
-          \item \textbf{Payment Method Split:} Breakdown across UPI, Cards, and Net Banking.
-        \end{itemize}
-      \end{exampleblock}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% -------------------------------------------------------------
-% SLIDE 6: DEPLOYMENT & DEVOPS ARCHITECTURE
-% -------------------------------------------------------------
-\begin{frame}{Production Deployment \& DevOps Architecture}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Containerization (\texttt{Docker})}
-        \begin{itemize}
-          \item \textbf{Backend:} Multi-stage Node.js Alpine container with non-root security.
-          \item \textbf{Frontend:} Multi-stage build producing static bundle served through an optimized \textbf{Nginx} Alpine reverse proxy.
-          \item \textbf{Compose:} \texttt{docker-compose.yml} orchestrating MongoDB, Express API, and Nginx Client.
-        \end{itemize}
-      \end{block}
-    \end{column}
-
-    \begin{column}{0.48\textwidth}
-      \begin{exampleblock}{Cloud Infrastructure as Code}
-        \begin{itemize}
-          \item \textbf{Render Blueprint (\texttt{render.yaml}):} Automated cloud deployment for Express web service and React static site.
-          \item \textbf{Vercel (\texttt{vercel.json}):} Client-side SPA routing and transparent API proxying.
-          \item \textbf{Hybrid Production Serving:} Express dynamically serves \texttt{client/dist} in production single-instance environments.
-        \end{itemize}
-      \end{exampleblock}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% -------------------------------------------------------------
-% SLIDE 7: CONCLUSION & EVALUATION DEMO
-% -------------------------------------------------------------
-\begin{frame}{Evaluation Demo Highlights \& Key Learnings}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Live Demonstration Highlights}
-        \begin{itemize}
-          \item Full CRUD workflow with responsive modal forms and toast feedback.
-          \item Interactive category donut and daily cashflow bar charts.
-          \item Dynamic month selector with instantaneous metric updates.
-          \item One-click CSV transaction export.
-        \end{itemize}
-      \end{block}
-    \end{column}
-
-    \begin{column}{0.48\textwidth}
-      \begin{exampleblock}{Key Takeaways}
-        \begin{itemize}
-          \item End-to-end full-stack development using modern MERN principles.
-          \item Scalable database schema design and aggregation optimization.
-          \item Industrial DevOps practices: Docker containerization and cloud deployment configs.
-        \end{itemize}
-      \end{exampleblock}
-    \end{column}
-  \end{columns}
-
-  \vspace{0.2cm}
-  \begin{center}
-    \footnotesize\textbf{Live Evaluation URL:} \href{https://admit-posts-district-agrees.trycloudflare.com}{\textcolor{AccentEmerald}{\textbf{https://admit-posts-district-agrees.trycloudflare.com}}}\\[0.3em]
-    \Large\textbf{Thank You! Questions \& Demonstration}
-  \end{center}
 \end{frame}
 
 \end{document}
