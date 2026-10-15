@@ -1,32 +1,15 @@
 services:
-  # Backend Express Web Service
+  # Unified MERN Full-Stack Web Service (Serves React Client + Express API on single port)
   - type: web
-    name: spendwise-api
+    name: mern-expense-tracker
     env: node
     plan: free
-    rootDir: server
-    buildCommand: npm install
-    startCommand: node server.js
+    buildCommand: npm run build
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 10000
       - key: MONGO_URI
-        sync: false # Connect to MongoDB Atlas connection string in Render dashboard
-
-  # Frontend Static Site
-  - type: web
-    name: spendwise-client
-    env: static
-    plan: free
-    rootDir: client
-    buildCommand: npm install && npm run build
-    staticPublishPath: dist
-    routes:
-      - type: rewrite
-        source: /api/*
-        destination: https://spendwise-api.onrender.com/api/*
-      - type: rewrite
-        source: /*
-        destination: /index.html
+        value: mongodb+srv://aksharsakhis_db_user:NTJo1CHFFyL60nnw@cluster0.ufysady.mongodb.net/expense_tracker_mern?retryWrites=true&w=majority
