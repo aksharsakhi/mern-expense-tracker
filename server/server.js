@@ -41,7 +41,7 @@ const path = require('path');
 const fs = require('fs');
 const clientDistPath = path.join(__dirname, '../client/dist');
 
-if (process.env.NODE_ENV === 'production' && fs.existsSync(clientDistPath)) {
+if (fs.existsSync(clientDistPath)) {
   app.use(express.static(clientDistPath));
   app.get('*', (req, res, next) => {
     if (req.originalUrl.startsWith('/api')) {
